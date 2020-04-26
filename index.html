@@ -7,9 +7,66 @@
 </head>
 <body>
 
-
+        <form>
+                <p>
+                        <label for="item">item</label>
+                        <input type="text" name="item" id="item">
+                </p>
+                <p>
+                        <button id="addItem">Add Item</button>
+                </p>
+        </form>
+        
+        <ul id="items"></ul>
 
         <script>
+                // View all todo list items
+                // add an item to list
+                // mark todo list item as complete or incomplete
+                // delete an item
+
+                const items = [
+                        {
+                                text: 'Take out trash',
+                                isDone: false
+                        },
+                        {
+                                text: 'Cook dinner',
+                                isDone: true
+                        },
+                        {
+                                text: 'Walk the dog',
+                                isDone: false
+                        },
+                        {
+                                text: 'Do laundry',
+                                isDone: true
+                        },
+                        {
+                                text: 'Buy groceries',
+                                isDone: false
+                        }
+                ]
+
+                // Views all todo list items
+                const renderItems = () => {
+                        for (let i = 0; i < items.length; i++) {
+                                // Makes the list item
+                                let itemElem = document.createElement('li')
+                                // Puts the text from each item inside of the text content of the list item
+                                itemElem.textContext = items[i].text 
+                                // This appends the item to the page
+                                document.getElementById('items').append(itemElem)
+                        }
+                }
+
+                document.getElementById('addItem').addEventListener('click', (event) => {
+                        // Prevents the page from refreshing on you
+                        event.preventDefault()
+                        console.log(document.getElementById('item').value)
+                })
+
+                renderItems()
 
         </script>
 </body>
