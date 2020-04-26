@@ -16,7 +16,7 @@
                         <button id="addItem">Add Item</button>
                 </p>
         </form>
-        
+
         <ul id="items"></ul>
 
         <script>
@@ -26,6 +26,7 @@
                 // delete an item
 
                 const items = [
+                        
                         {
                                 text: 'Take out trash',
                                 isDone: false
@@ -54,19 +55,20 @@
                                 // Makes the list item
                                 let itemElem = document.createElement('li')
                                 // Puts the text from each item inside of the text content of the list item
-                                itemElem.textContext = items[i].text 
+                                itemElem.textContext = items[i].text
                                 // This appends the item to the page
                                 document.getElementById('items').append(itemElem)
                         }
                 }
 
-                document.getElementById('addItem').addEventListener('click', (event) => {
+                document.getElementById('addItem').addEventListener('click',  (event) => {
                         // Prevents the page from refreshing on you
                         event.preventDefault()
                         console.log(document.getElementById('item').value)
                 })
 
-                renderItems()
+                
+        renderItems()
 
         </script>
 </body>
