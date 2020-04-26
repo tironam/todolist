@@ -46,42 +46,44 @@
                 // delete an item
 
                 const items = [
-                        
-                        {
-                                text: 'Take out trash',
-                                isDone: false
-                        },
-                        {
-                                text: 'Cook dinner',
-                                isDone: true
-                        },
-                        {
-                                text: 'Walk the dog',
-                                isDone: false
-                        },
-                        {
-                                text: 'Do laundry',
-                                isDone: true
-                        },
-                        {
-                                text: 'Buy groceries',
-                                isDone: false
-                        }
-                ]
+                                {
+                                        text: 'Take out trash',
+                                        isDone: false
+                                },
+                                {
+                                        text: 'Cook dinner',
+                                        isDone: true
+                                },
+                                {
+                                        text: 'Walk the dog',
+                                        isDone: false
+                                },
+                                {
+                                        text: 'Do laundry',
+                                        isDone: true
+                                },
+                                {
+                                        text: 'Buy groceries',
+                                        isDone: false
+                                }
+                        ]
 
                 // Views all todo list items
                 const renderItems = () => {
-                        document.getElementById('items').innerHTML = ' '
-                        for (let i = 0; i < items.length; i++) {
-                                // Makes the list item
-                                let itemElem = document.createElement('li')
-                                itemElem.className ="list-group-item"
-                                // Puts the text from each item inside of the text content of the list item
-                                itemElem.textContext = items[i].text
-                                // This appends the item to the page
-                                document.getElementById('items').append(itemElem)
+                                document.getElementById('items').innerHTML = ''
+                                for (let i = 0; i < items.length; i++) {
+                                        let itemElem = document.createElement('li')
+                                        itemElem.classList.add('list-group-item')
+                                        itemElem.classList.add(items[i].isDone ? 'list-group-item-success' : 'list-group-item-secondary')
+                                        itemElem.classList.add('d-flex', 'justify-content-between', 'align-items-center')
+                                        itemElem.innerHTML = `
+                                        ${items[i].text}
+                                        <button class="btn btn-warning markDone" data-index="${i}">✓</button>
+                                        <button class="btn btn-danger removeItem" data-index="${i}">X</button>
+                                        `
+                                        document.getElementById('items').append(itemElem)
+                                }
                         }
-                }
 
                 const addItem = () => {
                         items.push({
@@ -89,7 +91,7 @@
                                 isDone: false
                         })
                         renderItems()
-                        document.getElementById('item').value = ' '
+                        document.getElementById('item').value = ''
                 }
                 document.getElementById('addItem').addEventListener('click',  (event) => {
                         // Prevents the page from refreshing on you
